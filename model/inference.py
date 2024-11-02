@@ -32,3 +32,14 @@ def run_isolation_forest(features, contamination=0.1):
   outlier_predictions = isolation_forest.predict(features)
   outliers = np.where(outlier_predictions == -1)[0]
   return outliers, outlier_predictions
+
+def main():
+  tokenizer, bert_model = load_bert_model()
+  text_data = ["This is an example text.", "Another sample input.", "Potentially anomalous data."]
+  
+  features = extract_text_features(text_data, tokenizer, bert_model)
+  outlier_indices, predictions = run_isolation_forest(features)
+  print(outlier_indices)
+
+if __name__ == "__main__":
+  main()
